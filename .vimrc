@@ -43,11 +43,11 @@ imap <F2> <Esc>:NERDTreeToggle<CR>
 
 " Tab navigation like Firefox.
 nnoremap <C-u> :tabprevious<CR>
-nnoremap <C-i> :tabnext<CR>
+nnoremap <C-o> :tabnext<CR>
 nnoremap <C-n> :tabnew<CR>
 nnoremap <C-y> :tabclose<CR>
 inoremap <C-u> <Esc>:tabprevious<CR>h
-inoremap <C-i> <Esc>:tabnext<CR>h
+inoremap <C-o> <Esc>:tabnext<CR>h
 inoremap <C-n> <Esc>:tabnew<CR>
 inoremap <C-y> <Esc>:tabclose<CR>
 
@@ -89,6 +89,10 @@ inoremap <Tab> <Tab>
 noremap i k
 noremap j h
 noremap k j
+" add page jumps
+noremap <C-k> <PageDown> 
+noremap <C-i> <PageUp> 
+
 " change to insert mode on ctrl+I
 noremap h i
 " change to normal mode on ctrl+H
@@ -99,9 +103,9 @@ noremap 7 0
 noremap 8 ^
 noremap 9 $
 
-" add new line after/before current line in normal mode with Enter 
+" add new line before current line in normal mode with Enter 
 nmap <S-CR> O<Esc>
-nmap <CR> o<Esc>
+
 " add space in normal mode when spacebar is hit
 nnoremap <Space> i<Space><Right><ESC>
 " map backspace to delete left char in normal mode
