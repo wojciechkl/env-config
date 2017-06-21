@@ -1,6 +1,6 @@
 :set fileencodings=utf-8
-:set autoread " automatycznie odswieza zawartosc plikow zmienionych poza vim
-:set laststatus=2 " wymagane dla vim-arline - inaczej pasek nie pojawi dla pojedynczych dokumentow 
+:set autoread " autorefresh files changed outside of VIM
+:set laststatus=2 " required for vim-arline plugin 
 syntax on
 :color desert
 :set cursorline
@@ -11,14 +11,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree' " nawigacja za pomoca drzewka z plikami
-Plugin 'jistr/vim-nerdtree-tabs' " powiazanie drzewka z plikami z zakladkami
-Plugin 'tpope/vim-fugitive' " integracja z GIT
-Plugin 'scrooloose/syntastic' " sprawdzacz skladni np. dla pytona
-Plugin 'vim-airline/vim-airline' " pasek z informacjami o pliku
-Plugin 'ctrlpvim/ctrlp.vim' " wyszukiwanie plikow
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'benmills/vimux'
+Plugin 'scrooloose/nerdtree' " file tree navigator
+Plugin 'jistr/vim-nerdtree-tabs' " file tree and tabs integration 
+Plugin 'tpope/vim-fugitive' " git integration 
+Plugin 'scrooloose/syntastic' " source code syntax verification (python etc) 
+Plugin 'vim-airline/vim-airline' " fancy statusbar 
+Plugin 'ctrlpvim/ctrlp.vim' " file searcher 
+Plugin 'christoomey/vim-tmux-navigator' " tmux integration
+Plugin 'benmills/vimux' " tmux integration
 " disabled - problems with error 413
 " Plugin 'valloric/youcompleteme'
 
@@ -57,7 +57,7 @@ let NERDTreeMapOpenInTab='<Space>'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" konfiguracja syntastic dla poczatkujacych
+" syntatic configuration (static source code verification)
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -68,7 +68,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:airline#extensions#tabline#enabled = 1
 
-" konfuguracja ctrlP
+" file search plugin configuration (ctrl+p)
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
@@ -82,16 +82,17 @@ let g:ctrlp_prompt_mappings = {
 nnoremap ,cd :lcd %:p:h<CR>  " working director to current directory after ,cd
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-" przywrocenie mapowania dla taba (cos go nadpisywalo w trybie edycji)
+" force proper tab behaviour 
 inoremap <Tab> <Tab>
-imap <C-L> <Esc>
-imap <C-H> <Esc>
 
-" mapowanie strzalek na jikl
+" map arrows to more convinient schema - jikl
 noremap i k
 noremap j h
 noremap k j
+" change to insert mode on ctrl+I
 noremap h i
+" change to normal mode on ctrl+H
+imap <C-H> <Esc>
 
 " moving to de beginning and end of line with <- 8 9 ->
 noremap 7 0
@@ -99,12 +100,15 @@ noremap 8 ^
 noremap 9 $
 
 " add new line after/before current line in normal mode with Enter 
-nmap <S-Enter> O<Esc>
+nmap <S-CR> O<Esc>
 nmap <CR> o<Esc>
+" add space in normal mode when spacebar is hit
+nnoremap <Space> i<Space><Right><ESC>
+" map backspace to delete left char in normal mode
+nnoremap <backspace> X
 
-" wlaczamy podswietlanie wynikow wyszukiwania
+" turn on search results highlighting
 set hlsearch
 
-" przyspieszenie przejsca do trybu odczytu (nie czeka na sekwencje klawiszy)
+" faster switch to normal mode - dont wait for key sequence 
 set timeoutlen=1000 ttimeoutlen=0
-
