@@ -105,6 +105,7 @@ noremap 9 $
 
 " add new line before current line in normal mode with Enter 
 nmap <S-CR> O<Esc>
+nmap <CR> o<Esc>
 
 " add space in normal mode when spacebar is hit
 nnoremap <Space> i<Space><Right><ESC>
