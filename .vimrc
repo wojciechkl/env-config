@@ -4,9 +4,21 @@
 syntax on
 :color desert
 
+:set autoindent
+:set smarttab
+:set incsearch " search on typing
+:set wildmenu " suggests vim command parameters
+
+" prett : set list chars
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+
 " add underline for current line
 :set cursorline
 
+" limit signify to svn and git
+let g:signify_vcs_list = ['svn', 'git']
 
 " add line numeration column
 :set number
@@ -29,7 +41,9 @@ Plugin 'vim-airline/vim-airline' " fancy statusbar
 Plugin 'ctrlpvim/ctrlp.vim' " file searcher 
 Plugin 'christoomey/vim-tmux-navigator' " tmux integration
 Plugin 'benmills/vimux' " tmux integration
-Plugin 'sjl/vitality.vim'
+Plugin 'sjl/vitality.vim' " integration with iterm2 and tmux - better cursor shape for insert mode
+Plugin 'mhinz/vim-signify' " shows changes for current file (svn and git)
+
 " disabled - problems with error 413
 " Plugin 'valloric/youcompleteme'
 
