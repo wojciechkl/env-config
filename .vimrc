@@ -1,5 +1,5 @@
 :set fileencodings=utf-8
-:set autoread " autorefresh files changed outside of VIM
+:set autoread " autorefresh fileshanged outside of VIM
 :set laststatus=2 " required for vim-arline plugin 
 syntax on
 :color desert
@@ -7,11 +7,16 @@ syntax on
 :set number
 :set relativenumber
 
+" turn on mouse for all events
+:set mouse=a
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree' " file tree navigator
+Plugin 'leafgarland/typescript-vim'
+Plugin 'quramy/tsuquyomi'
 Plugin 'jistr/vim-nerdtree-tabs' " file tree and tabs integration 
 Plugin 'tpope/vim-fugitive' " git integration 
 Plugin 'scrooloose/syntastic' " source code syntax verification (python etc) 
@@ -21,6 +26,9 @@ Plugin 'christoomey/vim-tmux-navigator' " tmux integration
 Plugin 'benmills/vimux' " tmux integration
 " disabled - problems with error 413
 " Plugin 'valloric/youcompleteme'
+
+" force typescript for ts files
+autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
 " run current file in batch with F5
 map <F5> <Esc>:w<CR>:!%:p<CR>
@@ -85,18 +93,10 @@ set backspace=indent,eol,start
 " force proper tab behaviour 
 inoremap <Tab> <Tab>
 
-" map arrows to more convinient schema - jikl
-noremap i k
-noremap j h
-noremap k j
-" add page jumps
-noremap <C-k> <PageDown> 
-noremap <C-i> <PageUp> 
-
-" change to insert mode on ctrl+I
-noremap h i
 " change to normal mode on ctrl+H
 imap <C-H> <Esc>
+" map semicolon to colon - allows to enter command mode with just one key
+nnoremap ; :  
 
 " moving to de beginning and end of line with <- 8 9 ->
 noremap 7 0
