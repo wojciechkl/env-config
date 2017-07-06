@@ -1,9 +1,14 @@
 :set fileencodings=utf-8
-:set autoread " autorefresh fileshanged outside of VIM
+:set autoread " autorefresh files changed outside of VIM
 :set laststatus=2 " required for vim-arline plugin 
 syntax on
 :color desert
+
+" add underline for current line
 :set cursorline
+
+
+" add line numeration column
 :set number
 :set relativenumber
 
@@ -24,6 +29,7 @@ Plugin 'vim-airline/vim-airline' " fancy statusbar
 Plugin 'ctrlpvim/ctrlp.vim' " file searcher 
 Plugin 'christoomey/vim-tmux-navigator' " tmux integration
 Plugin 'benmills/vimux' " tmux integration
+Plugin 'sjl/vitality.vim'
 " disabled - problems with error 413
 " Plugin 'valloric/youcompleteme'
 
