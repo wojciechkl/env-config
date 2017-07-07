@@ -36,6 +36,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'quramy/tsuquyomi'
 Plugin 'jistr/vim-nerdtree-tabs' " file tree and tabs integration 
 Plugin 'tpope/vim-fugitive' " git integration 
+Plugin 'gregsexton/gitv' " git visualization
 Plugin 'scrooloose/syntastic' " source code syntax verification (python etc) 
 Plugin 'vim-airline/vim-airline' " fancy statusbar 
 Plugin 'ctrlpvim/ctrlp.vim' " file searcher 
@@ -110,7 +111,7 @@ let g:ctrlp_prompt_mappings = {
 nnoremap ,cd :lcd %:p:h<CR>  " working director to current directory after ,cd
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-" force proper tab behaviour 
+" force proper tab behaviou 
 inoremap <Tab> <Tab>
 
 " change to normal mode on ctrl+H
