@@ -3,7 +3,7 @@
 :set laststatus=2 " required for vim-arline plugin 
 syntax on
 :color desert
-
+  
 :set autoindent
 :set smarttab
 :set incsearch " search on typing
