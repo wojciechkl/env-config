@@ -3,7 +3,7 @@
 :set laststatus=2 " required for vim-arline plugin 
 syntax on
 :color desert
-     
+
 :set autoindent
 :set smarttab
 :set incsearch " search on typing
@@ -111,7 +111,7 @@ let g:ctrlp_prompt_mappings = {
 nnoremap ,cd :lcd %:p:h<CR>  " working director to current directory after ,cd
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-" force proper tab behaviou 
+" force proper tab behaviour
 inoremap <Tab> <Tab>
 
 " change to normal mode on ctrl+H
