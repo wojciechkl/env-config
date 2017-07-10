@@ -4,6 +4,7 @@
 syntax on
 :color desert
 
+:set clipboard=unnamed " yank to system clipboard 
 :set autoindent
 :set smarttab
 :set incsearch " search on typing
@@ -118,11 +119,6 @@ inoremap <Tab> <Tab>
 imap <C-H> <Esc>
 " map semicolon to colon - allows to enter command mode with just one key
 nnoremap ; :  
-
-" moving to de beginning and end of line with <- 8 9 ->
-noremap 7 0
-noremap 8 ^
-noremap 9 $
 
 " add new line before current line in normal mode with Enter 
 nmap <S-CR> O<Esc>
