@@ -116,6 +116,7 @@ set backspace=indent,eol,start
 inoremap <Tab> <Tab>
 
 " change to normal mode on ctrl+H
+imap <C-I> <Esc><Right>
 imap <C-H> <Esc>
 " map semicolon to colon - allows to enter command mode with just one key
 nnoremap ; :  
