@@ -51,6 +51,8 @@ Plugin 'mhinz/vim-signify' " shows changes for current file (svn and git)
 Plugin 'christianrondeau/vim-base64' " base64 decoding and encoding - <leader>btoa and <leader>atob
 Plugin 'tpope/vim-jdaddy' " pretty print json - gqaj
 Plugin 'ervandew/supertab' " easier inert mode completion with tab key
+Plugin 'visSum.vim' " simple sum for selected numbers (works for visual selection too), just do \su
+
 " disabled - problems with error 413
 " Plugin 'valloric/youcompleteme'
 
@@ -142,7 +144,7 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 set timeoutlen=1000 ttimeoutlen=0
 
 " add highlight for characters that goes over 80th column 
-function Hi80Col()
+function! Hi80Col()
 	highlight ColorColumn ctermbg=magenta
 	call matchadd('ColorColumn', '\%81v', 137)
 endfunction
