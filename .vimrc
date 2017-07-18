@@ -1,14 +1,17 @@
-:set fileencodings=utf-8
-:set autoread " autorefresh files changed outside of VIM
-:set laststatus=2 " required for vim-arline plugin 
+set fileencodings=utf-8
+set autoread " autorefresh files changed outside of VIM
+set laststatus=2 " required for vim-arline plugin 
 syntax on
 :color desert
 
-:set clipboard=unnamed " yank to system clipboard 
-:set autoindent
-:set smarttab
-:set incsearch " search on typing
-:set wildmenu " suggests vim command parameters
+set clipboard=unnamed " yank to system clipboard 
+set autoindent
+set smarttab
+set incsearch " search on typing
+set wildmenu " suggests vim command parameters
+
+" if next line does not fit on screen display partial lines insted of @
+set display+=lastline 
 
 " prett : set list chars
 if &listchars ==# 'eol:$'
@@ -16,17 +19,17 @@ if &listchars ==# 'eol:$'
 endif
 
 " add underline for current line
-:set cursorline
+set cursorline
 
 " limit signify to svn and git
 let g:signify_vcs_list = ['svn', 'git']
 
 " add line numeration column
-:set number
-:set relativenumber
+set number
+set relativenumber
 
 " turn on mouse for all events
-:set mouse=a
+set mouse=a
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -45,7 +48,9 @@ Plugin 'christoomey/vim-tmux-navigator' " tmux integration
 Plugin 'benmills/vimux' " tmux integration
 Plugin 'sjl/vitality.vim' " integration with iterm2 and tmux - better cursor shape for insert mode
 Plugin 'mhinz/vim-signify' " shows changes for current file (svn and git)
-
+Plugin 'christianrondeau/vim-base64' " base64 decoding and encoding - <leader>btoa and <leader>atob
+Plugin 'tpope/vim-jdaddy' " pretty print json - gqaj
+Plugin 'ervandew/supertab' " easier inert mode completion with tab key
 " disabled - problems with error 413
 " Plugin 'valloric/youcompleteme'
 
@@ -73,11 +78,9 @@ imap <F2> <Esc>:NERDTreeToggle<CR>
 
 " Tab navigation like Firefox.
 nnoremap <C-u> :tabprevious<CR>
-nnoremap <C-o> :tabnext<CR>
 nnoremap <C-n> :tabnew<CR>
 nnoremap <C-y> :tabclose<CR>
 inoremap <C-u> <Esc>:tabprevious<CR>h
-inoremap <C-o> <Esc>:tabnext<CR>h
 inoremap <C-n> <Esc>:tabnew<CR>
 inoremap <C-y> <Esc>:tabclose<CR>
 
@@ -116,7 +119,6 @@ set backspace=indent,eol,start
 inoremap <Tab> <Tab>
 
 " change to normal mode on ctrl+H
-imap <C-I> <Esc><Right>
 imap <C-H> <Esc>
 " map semicolon to colon - allows to enter command mode with just one key
 nnoremap ; :  
@@ -133,5 +135,38 @@ nnoremap <backspace> X
 " turn on search results highlighting
 set hlsearch
 
+" change bracket highlight color to magneta
+hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+
 " faster switch to normal mode - dont wait for key sequence 
 set timeoutlen=1000 ttimeoutlen=0
+
+" add highlight for characters that goes over 80th column 
+highlight ColorColumn ctermbg=101
+call matchadd('ColorColumn', '\%81v', 137)
+
+" ecape/unescape & < > HTML entities in range (default current line).
+function! HtmlEntities(line1, line2, action)
+	let search = @/
+	let range = 'silent ' . a:line1 . ',' . a:line2
+	if a:action == 0  " must convert &amp; last
+		execute range . 'sno/&lt;/</eg'
+		execute range . 'sno/&gt;/>/eg'
+		execute range . 'sno/&amp;/&/eg'
+	else              " must convert & first
+		execute range . 'sno/&/&amp;/eg'
+		execute range . 'sno/</&lt;/eg'
+		execute range . 'sno/>/&gt;/eg'
+	endif
+	nohl
+	let @/ = search
+endfunction
+
+" remove duplicated lines from current file
+function! Uniq()
+	g/^\(.*\)$\n\1$/d
+endfunction
+
+command! -range -nargs=1 Entities call HtmlEntities(<line1>, <line2>, <args>)
+noremap <silent> <Leader>h :Entities 0<CR>
+noremap <silent> <Leader>H :Entities 1<CR>
