@@ -142,8 +142,13 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 set timeoutlen=1000 ttimeoutlen=0
 
 " add highlight for characters that goes over 80th column 
-highlight ColorColumn ctermbg=101
-call matchadd('ColorColumn', '\%81v', 137)
+function Hi80Col()
+	highlight ColorColumn ctermbg=magenta
+	call matchadd('ColorColumn', '\%81v', 137)
+endfunction
+
+autocmd FileType javascript call Hi80Col()
+autocmd FileType python call Hi80Col()
 
 " ecape/unescape & < > HTML entities in range (default current line).
 function! HtmlEntities(line1, line2, action)
