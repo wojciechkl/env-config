@@ -61,6 +61,8 @@ Plugin 'xolox/vim-easytags' " quick ctags generator
 Plugin 'brookhong/cscope.vim' " better ctags with cscope
 Plugin 'easymotion/vim-easymotion' " visualize motions - requires double <leader> to work ! ex: <leader><leader>s
 
+nmap s <Plug>(easymotion-overwin-f2)
+
 " force typescript for ts files
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
@@ -188,6 +190,8 @@ hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 
 " faster switch to normal mode - dont wait for key sequence 
 set timeoutlen=1000 ttimeoutlen=0
+set notimeout
+set ttimeout
 
 " basic tab settings
 set softtabstop=0 noexpandtab 
