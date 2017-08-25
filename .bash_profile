@@ -1,4 +1,5 @@
 alias python27='/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
+export PATH="~/bin:$PATH"
 alias svim='vim -u NONE'
 export EDITOR='vim'
 
@@ -46,6 +47,23 @@ function searchInGit(){
 	git log --all --grep="$1"
 }
 
+function sendFile(){
+	echo " send file $1 $2 $3"
+	echo "File send" | mutt -a "$3" -s "$2" -- $1
+}
+
+function sendFileToMe(){
+	sendFile wojciech.klicki@gmail.com "Catch!" "$1"
+}
+
+function sendFileToWilk(){
+	sendFile michal.wilk@dysant.com "Catch!" "$1"
+}
+
 alias git-search='searchInGit'
 
+alias col-stat='~/bin/col_stat.sh'
+
+alias sfWilk='sendFileToWilk'
+alias sfMe='sendFileToMe'
 . ~/.bashrc

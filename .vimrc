@@ -3,11 +3,13 @@ set autoread " autorefresh files changed outside of VIM
 set laststatus=2 " required for vim-arline plugin 
 set ul=500 " bigges undo buffer
 syntax on
-:color desert
+color badwolf
 
 set clipboard=unnamed " yank to system clipboard 
-set incsearch " search on typing
 set wildmenu " suggests vim command parameters
+set incsearch " search on typing
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
 
 " if next line does not fit on screen display partial lines insted of @
 set display+=lastline 
@@ -17,15 +19,28 @@ if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 endif
 
+" Stop certain movements from always going to the first character of a line.
+" While this behaviour deviates from that of Vi, it does what most users
+" coming from other editors would expect.
+set nostartofline
+  
 " add underline for current line
 set cursorline
 
 " limit signify to svn and git
 let g:signify_vcs_list = ['svn', 'git']
 
+" Set the command window height to 2 lines, to avoid many cases of having to 
+"""press <Enter> to continue"
+set cmdheight=2
+
 " add line numeration column
 set number
 set relativenumber
+
+" Use case insensitive search, except when using capital letters
+set ignorecase
+set smartcase
 
 " turn on mouse for all events
 set mouse=a
@@ -61,6 +76,8 @@ Plugin 'xolox/vim-easytags' " quick ctags generator
 Plugin 'brookhong/cscope.vim' " better ctags with cscope
 Plugin 'easymotion/vim-easymotion' " visualize motions - requires double <leader> to work ! ex: <leader><leader>s
 
+
+" map s key to easy motion char search
 nmap s <Plug>(easymotion-overwin-f2)
 
 " force typescript for ts files
@@ -182,9 +199,6 @@ nnoremap <Space> i<Space><Right><ESC>
 " map backspace to delete left char in normal mode
 nnoremap <backspace> X
 
-" turn on search results highlighting
-set hlsearch
-
 " change bracket highlight color to magneta
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
 
@@ -275,13 +289,12 @@ noremap <silent> <Leader>H :Entities 1<CR>
 
 " shows logs for app log format
 function! ShowLogTimes()
-	echo "Scanning log files"
 	if !empty(matchstr(expand('%:t'),"log-.*"))
-		echo "Log file dected"
+		" echo "Log file dected"
 		:v/(+\d.*)/d 
 		:%s/.*(+\(\d.*\) ms).*/\1,\0/g
 	else
-		echo "Access file detected"
+		" echo "Access file detected"
 		:%s/.*" \(\d\{-}\.\d\{3}\) .*/\1 \0/g
 	endif
 	:noh
