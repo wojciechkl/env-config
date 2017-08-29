@@ -1,5 +1,6 @@
 #!/bin/sh
 
+cp ~/.oh-my-zsh/themes/wklicki.zsh-theme ./wklicki.zsh-theme
 cp ~/.vimrc ./.vimrc
 cp ~/.tmux.conf ./.tmux.conf
 cp ~/.zshrc ./.zshrc
