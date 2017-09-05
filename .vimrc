@@ -75,7 +75,7 @@ Plugin 'xolox/vim-misc' " required for easytags
 Plugin 'xolox/vim-easytags' " quick ctags generator
 Plugin 'brookhong/cscope.vim' " better ctags with cscope
 Plugin 'easymotion/vim-easymotion' " visualize motions - requires double <leader> to work ! ex: <leader><leader>s
-
+Plugin 'dkprice/vim-easygrep'
 
 " map s key to easy motion char search
 nmap s <Plug>(easymotion-overwin-f2)

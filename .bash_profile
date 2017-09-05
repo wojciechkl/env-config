@@ -60,10 +60,19 @@ function sendFileToWilk(){
 	sendFile michal.wilk@dysant.com "Catch!" "$1"
 }
 
+function sendFileToAB(){
+	sendFile adam.beben@dysant.com "Catch!" "$1"
+}
+
+function zipfolder(){
+	tar -zcvf "$1.tar.gz" "$1"
+}
+
 alias git-search='searchInGit'
 
 alias col-stat='~/bin/col_stat.sh'
 
 alias sfWilk='sendFileToWilk'
 alias sfMe='sendFileToMe'
+alias sfAb='sendFileToAB'
 . ~/.bashrc
