@@ -39,6 +39,10 @@ $ sudo apt-get install network-manager-l2tp  network-manager-l2tp-gnome
 Instalujemy git (sudo apt install git)
 Włączamy zapamiętywanie haseł: git config --global credential.helper store (uwaga może być niebezpiecznie bo hasła nie są szyfrowane!)
 
+Sprawdzamy czy jest ustawione "keyboard.dispatch": "keyCode" (inaczej prawy alt będzie działał jak strzałka) 
+https://github.com/Microsoft/vscode/wiki/Keybinding-Issues#troubleshoot-linux-keybindings
+
+
 6. Logowanie do repozytorium git: git.******.com (projekt ecommerce)
 Ściągamy https://git.dysant.com/gerant/ecommerce
 
