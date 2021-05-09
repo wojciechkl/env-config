@@ -1,3 +1,5 @@
+# Przygotowanie środowiska dev na windows 10 enterprise + hyper v + ubuntu 20.04
+
 1. Instalacja ubuntu 20.04 - można zrobić quick start - wersja 20.04 jest już dostępna
 Należy pamiętać o zwiększeniu rozmiaru partycji (Edit disk w hyperv + gparted w ubuntu)
 
