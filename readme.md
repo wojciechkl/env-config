@@ -13,11 +13,16 @@ Czyli:
 
 a) Wyłączyć autologin
 
-b) wget https://raw.githubusercontent.com/Hinara/linux-vm-tools/ubuntu20-04/ubuntu/20.04/install.sh
+b) Pobierz skrypt wlaczajacy xrdp 
+wget https://raw.githubusercontent.com/Hinara/linux-vm-tools/ubuntu20-04/ubuntu/20.04/install.sh
 sudo chmod +x install.sh
 sudo ./install.sh
 
 c) Set-VM -VMName <your_vm_name> -EnhancedSessionTransportType HvSocket
+
+c) Może być konieczne wejście do /etc/xrdp/xrdp.ini i zmiana use_vsock na false (jak na poniższym filmiku) inaczej nie odpalisię połączenie xrdp i rozszerzona sesja
+
+https://www.youtube.com/watch?v=tW7BHCZR8k4
 
 3. Czcionki - skalowanie czcionek na razie nie działa więc nalezy obejść to :
 
