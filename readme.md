@@ -21,6 +21,7 @@ sudo ./install.sh
 c) Set-VM -VMName <your_vm_name> -EnhancedSessionTransportType HvSocket
 
 c) Może być konieczne wejście do /etc/xrdp/xrdp.ini i zmiana use_vsock na false (jak na poniższym filmiku) inaczej nie odpalisię połączenie xrdp i rozszerzona sesja
+A dodatkowo w sekcji xorg ustawić domyślnego użytkownika (wtedy będzie wymagał tylko hasła przy podłaczaniu do maszyny)
 
 https://www.youtube.com/watch?v=tW7BHCZR8k4
 
