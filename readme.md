@@ -41,6 +41,17 @@ $ sudo add-apt-repository ppa:nm-l2tp/network-manager-l2tp
 $ sudo apt-get update
 $ sudo apt-get install network-manager-l2tp  network-manager-l2tp-gnome
 
+W wypadku gdyby VPN nie chciał się podłączyć należy sprawdzić logi /var/log/syslog
+Prawdopodobnie problem będzie leżał po stronie bibliotek dostrczających algorytmy szyfrujące.
+Usunięcie libreswan i zastąpie go stronswan może pomóc.
+https://askubuntu.com/questions/1185423/ubuntu-19-10-l2tp-vpn-doesnt-work-anymore
+I had the exact same problem upgrading from 19.04 to 19.10. I tried the NetworkManager upgrade too, but that didn't solve my problem. I then did the following three things, and now everything works again:
+
+Replaced libreSwan with StrongSwan (I found if I purged libreSwan, StrongSwan was automatically installed)
+Explicitly specified the Phase 1 and Phase 2 algorithms: "3des-sha1-modp1024" and "3des-sha1" respectively.
+Ensured only MSCHAPv2 was checked under PPP Settings.
+I have a feeling #3 is what solved my problem as I did notice a few more authentication boxes were checked under PPP Settings after the upgrade.
+
 5. Synchronizacja vscode - instalujemy sync extension - podłączamy się do git hub i ściągamy ustawienia (polecenie Sync: Download)
 Instalujemy git (sudo apt install git)
 Włączamy zapamiętywanie haseł: git config --global credential.helper store (uwaga może być niebezpiecznie bo hasła nie są szyfrowane!)
